@@ -1,4 +1,4 @@
-\ProvidesPackage{da53algo}[2021-07-29 MyAlgorithm]
+\ProvidesPackage{sy48algo}[2021-07-29 MyAlgorithm]
 
 \RequirePackage{xspace}
 \RequirePackage{listings}
@@ -69,10 +69,10 @@
 }
 
 % Style for comments
-\long\expandafter\def\csname da53algo@comment\endcsname#1{%
+\long\expandafter\def\csname sy48algo@comment\endcsname#1{%
 	\textnormal{\texttt{\textcolor{CIADgreen}{#1}}}\unskip%
 }
-\SetCommentSty{da53algo@comment}
+\SetCommentSty{sy48algo@comment}
 
 
 \newcommand{\code}[1]{\ifmmode\text{\lstinline[style=lststyle-java,basicstyle=\normalsize]{#1}}\else\lstinline[style=lststyle-java,basicstyle=\normalsize]{#1}\fi\xspace}
