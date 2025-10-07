@@ -274,6 +274,7 @@
 \end{frame}
 
 \begin{frame}[t,fragile,background={10}]{Example of a Grammar}
+	\smaller
 	\begin{itemize}
 		\item Arithmetic expressions are defined by the following grammar.
 		\item The terminals are: \begin{description}
@@ -286,6 +287,7 @@
 	\begin{bnf}
 		\bnfprod*{expression}{\bnfpn{expression} \bnfts{+} \bnfpn{term}} \\
 		\bnfalt*{\bnfpn{expression} \bnfts{-} \bnfpn{term}} \\
+		\bnfalt*{\bnfpn{term}} \\
 		\bnfprod*{term}{\bnfpn{term} \bnfts{*} \bnfpn{factor}} \\
 		\bnfalt*{\bnfpn{term} \bnfts{/} \bnfpn{factor}} \\
 		\bnfalt*{\bnfpn{factor}} \\
@@ -1708,8 +1710,8 @@
 	\item Consider the stack : $\bnfts{eof} \dots \bnfts{id} \bnfts{(} \bnfts{id}$
 	\item It is evident that the $\bnfts{id}$ on top of the stack should be reduced, but by which production?
 		\begin{enumerate}
-		\item $\bnfpn{parameters} \bnfopo \bnfts{id}$ if $p$ is a procedure
-		\item $\bnfpn{expressions} \bnfopo \bnfts{id}$ if $p$ is an array
+		\item $\bnfpn{parameters} \bnfopo \bnfts{id}$ (procedure syntax)
+		\item $\bnfpn{expression} \bnfopo \bnfts{id}$ (array syntax)
 		\end{enumerate}
 	\end{itemize}
 \end{frame}
@@ -2458,7 +2460,7 @@
 
 \begin{frame}[t]{Bodies of the Productions}
 	\begin{definition}\small
-		\ccode{{\textless}access\_modifier{\textgreater} {\textless}return\_type{\textgreater} {\textless}identifier{\textgreater} \bnfts( {\textless}parameters{\textgreater} \bnfts) \bnfts:} \\
+		\ccode{{\textless}access\_modifier{\textgreater} {\textless}return\_type{\textgreater} {\textless}name{\textgreater} \bnfts( {\textless}parameters{\textgreater} \bnfts) \bnfts:} \\
 		\ccode{{\textless}java\_block{\textgreater}} \\
 		\ccode{\bnfts\{ {\textless}expansion\_choices{\textgreater} \bnfts\}}
 	\end{definition}
