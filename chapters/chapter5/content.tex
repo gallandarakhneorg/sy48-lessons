@@ -58,7 +58,7 @@
 				\end{itemize}}
 				\only<3>{\begin{itemize}
 						\item Size of some program data may be known at compile time
-						\item Area where these data are stored in named \emph{Static Data}, usually put just after the Code area
+						\item Area where these data are stored is named \emph{Static Data}, usually put just after the Code area
 						\item \inlineexamples{string literals, global constants and variables, information related to garbage collection\dots}
 						\item Address of static data is directly put in the code
 				\end{itemize}}
@@ -842,7 +842,7 @@ unsafe void myFunction(int n) {
 	\begin{myalgorithm}
 		\Inputs{Stack $s$; called procedure $p$; nesting depth of $p$ is $N_p$}
 		\Begin{
-			$d[N_p]$ \affect \textcircled{P} of of $p$
+			$d[N_p]$ \affect \textcircled{P} of $p$
 		}
 	\end{myalgorithm}
 \end{frame}
@@ -1131,7 +1131,7 @@ unsafe void myFunction(int n) {
 \subsubsectiontableofcontentslide
 
 \begin{frame}{Deallocation and Coalescing Free Space}
-	\begin{block}{Dealocation of a Chunk}
+	\begin{block}{Deallocation of a Chunk}
 		When an object is deallocated, memory manager makes its chunk free
 	\end{block}
 	\vspace{.5cm}

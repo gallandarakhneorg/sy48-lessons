@@ -1317,7 +1317,7 @@ do {
 			\begin{itemize}
 				\item \emph{Width of a type} (and not of a variable) is the number of storage units (usually bytes) needed for storing values of that type
 				\item Basic type requires an integral number of storage units
-				\item Data of varying length (string, dynamic array\dots) is associated to a pointer (usually 64 or 128 bits) to the the fixed storage unit for that data
+				\item Data of varying length (string, dynamic array\dots) is associated to a pointer (usually 64 or 128 bits) to the fixed storage unit for that data
 			\end{itemize}
 		\end{block}
 		\begin{block}{Static Determination of the Run-time Address (Location)}
@@ -1444,8 +1444,8 @@ do {
 		\sddprod{Base}{\sddts{int}}{head.type = integer; head.width = 4}
 		\sddalt{\sddts{float}}{head.type = float; head.width = 8}
 		\sddprod{Arrays}{\sddts{[} \; \sddts{num} \; \sddts{]} \; \sddpn{Arrays}}{
-			head.type = \kw{array}(num.value,C.type) \newl
-			head.width = num.value * C.width}
+			head.type = \kw{array}(num.value,Arrays.type) \newl
+			head.width = num.value * Arrays.width}
 		\sddalt{\sddes}{head.type = t; head.width = w}
 	\end{sdd}
 	\vspace{.5cm}
@@ -1789,7 +1789,7 @@ do {
 	}{synthesis-type-checking}
 	\begin{itemize}
 	\item It requires names and their types to be declared before they are used
-	\item Relationship between types must be defined, e.g., $T_1 \subset T_2$ for value set of $T_1$ are included in value set of $T_2$
+	\item Relationship between types must be defined, e.g., $T_1 \subset T_2$, value set $T_1$ is included value set $T_2$
 	\end{itemize}
 	\vspace{.5cm}
 	\begin{example}
@@ -2400,7 +2400,7 @@ if ( x < 100 || x > 200 && x != y ) x = 0;
 	\ifgoto{\t1}{L2}
 	\goto{L3}
 	\a[L3]{\t1}{$x > 200$}
-	\ifgoto{$x > 200$}{L4}
+	\ifgoto{\t1}{L4}
 	\goto{L1}
 	\a[L4]{\t1}{$x \neq y$}
 	\ifgoto{\t1}{L2}
