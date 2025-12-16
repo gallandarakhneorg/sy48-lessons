@@ -1957,19 +1957,20 @@ do {
 	\begin{sdd}
 		\sddprod{E}{\sddpn{E} \; \sddts{+} \; \sddpn{E}}{
 			head.type = \alert{maxType}(E$_1$.type, E$_2$.type) \newl
-			o1 = \alert{widenVar}(E$_1$.addr, E$_1$.type, head.type) \newl
-			o2 = \alert{widenVar}(E$_2$.addr, E$_2$.type, head.type) \newl
+			o1 = \alert{widenVar}(E$_1$.addr, head.type, E$_1$.type) \newl
+			o2 = \alert{widenVar}(E$_2$.addr, head.type, E$_2$.type) \newl
 			head.addr = \kw{new} TemporaryVariable() \newl
 			\kw{quadruple}("+", o1, o2, head.addr)
 		}
 		\sddprod{E}{\sddts{id} \; \sddts{=} \; \sddpn{E}}{
-			head.addr = SymbolTable.current.get(\sddts{id}.lexeme) \newl
+			v = SymbolTable.current.get(\sddts{id}.lexeme) \newl
+			head.addr = v.addr \newl
 			head.type = v.type \newl
-			w = \alert{narrowVar}(E.addr, E.type, head.type) \newl
+			w = \alert{narrowVar}(E.addr, head.type, E.type) \newl
 			\kw{if} (w $\neq$ E.addr) \newl
 			\hspace{2em}\kw{warning}~"May loose information" \newl
 			\kw{else} \newl
-			\hspace{2em}w = \alert{widenVar}(E.addr, E.type, head.type) \newl
+			\hspace{2em}w = \alert{widenVar}(E.addr, head.type, E.type) \newl
 			\kw{quadruple}("=", w, $\emptyset$, head.addr)
 		}
 	\end{sdd}
