@@ -276,19 +276,21 @@ main() {
 						\end{description}
 				\end{itemize}}
 				\only<5>{\begin{itemize}
-						\item ``Access link'' to locate data needed by the called procedure found elsewhere (in another activation record\dots)
+						\item ``Access link'' to locate data needed by the called procedure and that are located elsewhere (in another activation record\dots)
+						\item Explained in following slides
 				\end{itemize}}
 				\only<6>{\begin{itemize}
 						\item ``Control link'' is pointing to the activation record of the caller
+						\item Explained in following slides
 				\end{itemize}}
 				\only<7>{\begin{itemize}
 						\item Space for the return value of the called function, if any
 						\item Not all called procedures return a value
-						\item We may prefer to place that value in a register for efficiency
+						\item We may prefer to place that value in a processor register for efficiency
 				\end{itemize}}
 				\only<8>{\begin{itemize}
 						\item Actual parameters are given by the caller and used by the callee procedure
-						\item Commonly, these values are not placed in the activation record but rather in registers, when possible
+						\item Commonly, these values are not placed in the activation record but rather in processor registers, when possible
 				\end{itemize}}
 			\end{small}
 		\end{column}
@@ -356,8 +358,8 @@ main() {
 \begin{frame}[background=6]{Typical Calling Sequence}
 	\begin{enumerate}
 		\item Caller evaluates and stores the actual parameters
-		\item Caller stores a return address, \\
-		stores the old value of \ccode{top\_sp} into the callee's, activation record \\
+		\item Caller stores a return address \\
+		stores the old value of \ccode{top\_sp} into the callee's activation record \\
 		increments \ccode{top\_sp} to point to the callee activation record
 		\item Callee saves the register values and other status information
 		\item Callee initializes its local data and begins execution
@@ -368,8 +370,8 @@ main() {
 \begin{frame}[background=6]{Typical Return Sequence}
 	\begin{enumerate}
 		\item Callee places the return value next to the parameters
-		\item Using information in the machine-state fields, callee restores \code{top\_sp} and other registers, \\
-		branches to the return address that the caller placed in the status field
+		\item Using information in the machine-state fields, callee restores \code{top\_sp} and other registers
+		\item Callee branches to the return address that the caller placed in the status field
 		\item Although \code{top\_sp} has been decremented, the caller knows where the return value is, relative to the current value of \code{top\_sp} \\
 		Caller may use that value
 	\end{enumerate}
@@ -530,13 +532,13 @@ unsafe void myFunction(int n) {
 					\begin{scriptsize}
 						\begin{myprocedure}{p}{n}
 							\Begin{
-								\KwSty{Declare} a \affect n/2\;
+								\KwSty{Declare} a \affect n/2
 								\KwSty{Procedure} {g()} \\
 								\Begin{
 									\lIf{$n>1$}{p(n-1)}
 									\lElseIf{$n=1$}{p(a/2)}
 								}
-								g() \;
+								g()
 							}
 						\end{myprocedure}
 					\end{scriptsize}
@@ -564,13 +566,13 @@ unsafe void myFunction(int n) {
 			\begin{scriptsize}
 				\begin{myprocedure}{p}{n}
 					\Begin{
-						\KwSty{Declare} a \affect n/2\;
+						\KwSty{Declare} a \affect n/2
 						\KwSty{Procedure} {g()} \\
 						\Begin{
-							\lIf{$n>1$}{p(n-1)\;}
-							\lElseIf{$n=1$}{p(a/2)\;}
+							\lIf{$n>1$}{p(n-1)}
+							\lElseIf{$n=1$}{p(a/2)}
 						}
-						g() \;
+						g()
 					}
 				\end{myprocedure}
 			\end{scriptsize}
@@ -578,7 +580,7 @@ unsafe void myFunction(int n) {
 		\begin{column}[t]{.35\linewidth}
 			\begin{small}
 				\code{p} has nesting depth $1$ \\
-				\vspace{2em}
+				\vspace{1.5em}
 				\code{g} has nesting depth $2$
 			\end{small}
 		\end{column}
@@ -606,13 +608,13 @@ unsafe void myFunction(int n) {
 			\begin{tiny}
 				\begin{myprocedure}{p}{n}
 					\Begin{
-						\KwSty{Declare} a \affect n/2\;
+						\KwSty{Declare} a \affect n/2
 						\KwSty{Procedure} {g()} \\
 						\Begin{
-							\lIf{$n>1$}{p(n-1)\;}
-							\lElseIf{$n=1$}{p(a/2)\;}
+							\lIf{$n>1$}{p(n-1)}
+							\lElseIf{$n=1$}{p(a/2)}
 						}
-						g() \;
+						g()
 					}
 				\end{myprocedure}
 			\end{tiny}
@@ -1026,7 +1028,7 @@ unsafe void myFunction(int n) {
 	\end{rightarrowsequence}
 	\begin{example}
 		\begin{itemize}
-			\item Visiting a large amount of data and performing small operations on it is not a good approach
+			\item Visiting a large amount of data and performing small operations on it is not a good approach for CPU (but good for GPU)
 			\item Preferably, smaller data should be pushed down into a faster memory level, and perform the computations on them
 		\end{itemize}
 	\end{example}
@@ -1524,7 +1526,7 @@ unsafe void myFunction(int n) {
 		\emph{Transitions from reachability to unreachability are catched}, or \\
 		\emph{reachable objects are periodically located;} \\
 		\emph{assuming that all the other objects are not reachable} \\[.5cm]
-		Reference counting is an approximation of the first approach:
+		Reference counting is an approximation of this approach:
 		\begin{itemize}
 			\item Counter of the references to an object is maintained
 			\item When the counter goes to zero, the object becomes unreachable (discussed in the next section)
