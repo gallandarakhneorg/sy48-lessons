@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PAGE=1
+PAGE=563
 
 exec pdfpc -w none -P "$PAGE" "$@" ./SY48.pdf
 
